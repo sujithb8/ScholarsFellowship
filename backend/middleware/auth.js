@@ -12,7 +12,7 @@ exports.isAuthenticated = async (req,res,next) => {
 
     try {
         //verify token
-        const decoded = jwt.verify(token,fidbcf5885c);
+        const decoded = jwt.verify(token,process.ENV.JWT_TOKEN);
         req.user = await User.findById(decoded.id);
         next();
 
