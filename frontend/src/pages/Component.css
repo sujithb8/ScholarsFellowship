@@ -1,0 +1,9 @@
+.carousel .control-prev.control-arrow {
+    /* Style for the previous arrow */
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel .control-next.control-arrow {
+    /* Style for the next arrow */
+    background: rgba(0, 0, 0, 0.5);
+}

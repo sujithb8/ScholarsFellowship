@@ -1,0 +1,243 @@
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import WorkIcon from '@mui/icons-material/Work';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogoutAction } from '../redux/actions/userAction';
+import { DarkMode } from "@mui/icons-material";
+import { toggleActionTheme } from '../redux/actions/themeAction';
+
+
+const pages = ['Home', 'Log In'];
+
+
+const Navbar = () => {
+    //show / hide button
+    const { userInfo } = useSelector(state => state.signIn);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { palette } = useTheme();
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+    // log out user
+    const logOutUser = () => {
+        dispatch(userLogoutAction());
+        window.location.reload(true);
+        setTimeout(() => {
+            navigate('/login');
+        }, 500)
+    }
+
+
+
+    return (
+        <AppBar position="sticky" sx={{ bgcolor: palette.primary.main,display:'flex',overflow:'auto' }}>
+            <Container >
+                {/* principal Menu */}
+                <Toolbar disableGutters>
+                    <img src='../images/logo.png' alt=''  href="/" />
+                    <Typography
+                        component='image'   
+                        src='../images/logo.png'
+                        alt=""
+                    > 
+                    </Typography>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: {  md: 'none' },
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                    <WorkIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="a"
+                        href=""
+                        sx={{
+                           
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.2rem',
+                            color: 'inherit',
+                            textDecoration: 'none',
+                        }}
+                    >
+                       University app manager
+                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {/* menu desktop */}
+
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white' }}>
+                            <Link to="/" style={{ color: 'white', textDecoration: "none" }}>
+                               Universities
+                            </Link>
+                        </Button>
+                  
+                  {!userInfo ? <> <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white' }}>
+                            <Link to="/register" style={{ color: 'white', textDecoration: "none" }}>
+                                Register
+                            </Link>
+                        </Button> 
+                    <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white' }}>
+                            <Link to="/login" style={{ color: 'white', textDecoration: "none" }}>
+                                Login
+                            </Link>
+                        </Button>
+                        </>
+                        : null
+                    }
+                    </Box>
+                     
+                       <Button sx={{}} onClick={() => dispatch(toggleActionTheme())}>
+                        <DarkMode sx={{ color: "#ffffff", fontSize: "15px" }} />
+                        <h6 style={{color: "#ffffff"}}>Night:</h6>
+                        {palette.mode === "dark" ? (
+                            <h6 style={{color: "#ffffff"}}>ON</h6>
+                        ) : (
+                            <h6 style={{color: "#ffffff"}}>OFF</h6>
+                        )}
+                    </Button>
+
+                    {/* OR */}
+                    {/* <IconButton sx={{ mr: 4 }} onClick={() => dispatch(toggleActionTheme())}>
+                        {palette.mode === "dark" ? (
+                            <DarkMode sx={{ color: "#ffffff", fontSize: "25px" }} />
+                        ) : (
+                            <LightMode sx={{ color: "#ffffff", fontSize: "25px" }} />
+                        )}
+                    </IconButton> */}
+
+                    <Box >
+                        <Tooltip title="Open settings">
+                            <IconButton onClick={handleOpenUserMenu} >
+                                <Avatar sx={{ color: palette.primary.white }} alt="Larry" src="../images/logo.png"/>
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            PaperProps={{
+                                sx: {
+                                    "& 	.MuiMenu-list": {
+                                        bgcolor: "primary.white",
+                                        color: "white"
+                                    },
+                                }
+                            }}
+
+                        
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                        >
+
+                          {/* {userInfo &&  userInfo.role===1 &&
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center"><Link style={{ textDecoration: "none", color: palette.secondary.main }} to="/admin/dashboard">Admin Dashboard</Link></Typography>
+                            </MenuItem> 
+}
+                           { userInfo &&  userInfo.role===0 &&
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center"><Link style={{ textDecoration: "none", color: palette.secondary.main }} to="/user/dashboard"> Dashboard</Link></Typography>
+                            </MenuItem> 
+                         
+                           
+                        } */}
+                            
+                            {
+                                !userInfo ?
+
+                                  <MenuItem onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center"><Link style={{ textDecoration: "none", color: palette.secondary.main }} to="/login">login</Link></Typography>
+                            </MenuItem>  :
+
+                                    <MenuItem onClick={logOutUser}>
+                            <Typography textAlign="center"><Link style={{ textDecoration: "none", color: palette.secondary.main }} to="/">logout</Link></Typography>            
+                                  </MenuItem>
+                            }
+
+
+                        </Menu>
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
+}
+export default Navbar;
