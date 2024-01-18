@@ -15,7 +15,7 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
 //database connection
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect('mongodb+srv://dynamoapplicationmanager:8TyOAy8untYNSJ8l@cluster0.cimeoxe.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
