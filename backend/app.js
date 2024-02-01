@@ -15,7 +15,7 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
 //database connection
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect('mongodb+srv://dynamoapplicationmanager:8TyOAy8untYNSJ8l@cluster0.cimeoxe.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
     res.send('API is running....')
  })
 //port
-const port = process.env.PORT || 8000;
+const port = 9000;
 
 app.listen(port,()=>{
     console.log("listening on port: " + port);
