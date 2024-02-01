@@ -4,7 +4,7 @@
   "description": "Mern App",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "LARRY",
   "license": "ISC",
