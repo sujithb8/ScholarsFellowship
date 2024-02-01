@@ -42,24 +42,26 @@ app.use('/api',univRoutes);
 
 __dirname = path.resolve()
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '/frontend/build')))
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-//   app.get('*', (req, res) =>
-//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-//   )
-// } else {
-//   app.get('/', (req, res) => {
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
+  })
+}
+
+// app.get('/', (req, res) => {
 //     res.send('API is running....')
-//   })
-// }
+//  })
 
 //error handler
 app.use(errorHandler);
 
-app.get('/', (req, res) => {
-    res.send('API is running....')
- })
+
 //port
 const port = 9000;
 
