@@ -33,9 +33,9 @@ extended:true
 }));
 
 //other middleware
-const corsOptions = {
-    origin:"https://scholarsfellowship-ogif.onrender.com/"
-}
+// const corsOptions = {
+//     origin:"https://scholarsfellowship-ogif.onrender.com/"
+// }
 app.use(cookieParser());
 app.use(cors());
 
