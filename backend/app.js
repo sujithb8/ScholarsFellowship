@@ -54,7 +54,9 @@ __dirname = path.resolve()
 //   })
 // }
 
-
+app.get('/', (req, res) => {
+    res.send('API is running....')
+ })
  
 //error handler
 app.use(errorHandler);
