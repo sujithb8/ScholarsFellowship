@@ -27,7 +27,7 @@ export const univLoadAction = (pageNumber, keyword = '', type = '', location = '
     try {
         
     // const { data } = await axios.get(`/api/universities/?pageNumber=${pageNumber}&keyword=${keyword}&type=${type}&location=${location}`)
-    const { data } = await axios.get("http://localhost:9000/api/universities")
+    const { data } = await axios.get("https://scholarsfellowships-ae3r.onrender.com/api/universities")
         dispatch({
             type: UNIV_LOAD_SUCCESS,
             payload: data

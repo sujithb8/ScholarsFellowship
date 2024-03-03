@@ -26,7 +26,7 @@ import {
 export const userSignInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
     try {
-        const { data } = await axios.post(`http://localhost:9000/api/signin`, user);
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/api/signin`, user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_SIGNIN_SUCCESS,
@@ -46,7 +46,7 @@ export const userSignInAction = (user) => async (dispatch) => {
 export const userSignUpAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUEST });
     try {
-        const { data } = await axios.post(`http://localhost:9000/api/signup`, user);
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/api/signup`, user);
         dispatch({
             type: USER_SIGNUP_SUCCESS,
             payload: data
@@ -66,7 +66,7 @@ export const userLogoutAction = () => async (dispatch) => {
     dispatch({ type: USER_LOGOUT_REQUEST });
     try {
         localStorage.removeItem('userInfo');
-        const { data } = await axios.get(`http://localhost:9000/api/logout`);
+        const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/logout`);
         localStorage.removeItem('userInfo');
         dispatch({
             type: USER_LOGOUT_SUCCESS,
@@ -87,7 +87,7 @@ export const userLogoutAction = () => async (dispatch) => {
 export const userProfileAction = () => async (dispatch) => {
     dispatch({ type: USER_LOAD_REQUEST });
     try {
-        const { data } = await axios.get(`http://localhost:9000/api/profile`);
+        const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/profile`);
         dispatch({
             type: USER_LOAD_SUCCESS,
             payload: data
@@ -106,7 +106,7 @@ export const userProfileAction = () => async (dispatch) => {
 export const allUserAction = () => async (dispatch) => {
     dispatch({ type: ALL_USER_LOAD_REQUEST });
     try {
-        const { data } = await axios.get(`http://localhost:9000/api/users`);
+        const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/users`);
         dispatch({
             type: ALL_USER_LOAD_SUCCESS,
             payload: data
@@ -124,7 +124,7 @@ export const allUserAction = () => async (dispatch) => {
 export const userApplyUnivAction = (univ) => async (dispatch) => {
     dispatch({ type: USER_APPLY_UNIV_REQUEST });
     try {
-        const { data } = await axios.post(`http://localhost:9000/api/user/shortlist`, univ);
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/api/user/shortlist`, univ);
 
         dispatch({
             type: USER_APPLY_UNIV_SUCCESS,
