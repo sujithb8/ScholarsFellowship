@@ -7,7 +7,7 @@ exports.isAuthenticated = async (req,res,next) => {
     const {token} = req.cookies;
     //make sure token exists
     if (!token) {
-        return next(new ErrorResponse('Login to see details',401));
+        return next(new ErrorResponse('Login to see details OR Data Unavailable',401));
     }
 
     try {
