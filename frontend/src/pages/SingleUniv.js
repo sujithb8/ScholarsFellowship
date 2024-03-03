@@ -56,7 +56,7 @@ const SingleUniv = () => {
             applicationStatus: singleUniv && singleUniv.applicationStatus,
             riskFactor: singleUniv && singleUniv.riskFactor,
             logo: singleUniv && singleUniv.logo,
-            image: singleUniv && singleUniv.image,
+            // image: singleUniv && singleUniv.image,
         }))
     }
 
