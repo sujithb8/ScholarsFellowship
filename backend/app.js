@@ -31,6 +31,11 @@ app.use(bodyParser.urlencoded({
     limit:"5mb",
 extended:true
 }));
+
+//other middleware
+const corsOptions = {
+    origin:"https://scholarsfellowship-ogif.onrender.com/"
+}
 app.use(cookieParser());
 app.use(cors());
 
