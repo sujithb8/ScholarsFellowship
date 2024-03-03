@@ -27,7 +27,7 @@ export const univLoadAction = (pageNumber, keyword = '', type = '', location = '
     try {
         
     // const { data } = await axios.get(`/api/universities/?pageNumber=${pageNumber}&keyword=${keyword}&type=${type}&location=${location}`)
-    const { data } = await axios.get(`http://localhost:9000/api/universities`)
+    const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/universities`)
         dispatch({
             type: UNIV_LOAD_SUCCESS,
             payload: data
@@ -45,7 +45,7 @@ export const univLoadSingleAction = (univ_id) => async (dispatch) => {
     dispatch({ type: UNIV_LOAD_SINGLE_REQUEST });
     try {
         // eslint-disable-next-line no-template-curly-in-string
-        const { data } = await axios.get(`http://localhost:9000/api/university/${univ_id}`);
+        const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/university/${univ_id}`);
         dispatch({
             type: UNIV_LOAD_SINGLE_SUCCESS,
             payload: data
@@ -63,7 +63,7 @@ export const registerUnivAction = (univ) => async (dispatch) => {
     dispatch({ type: REGISTER_UNIV_REQUEST })
 
     try {
-        const { data } = await axios.post(`http://localhost:9000/api/universities/create`, univ)
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/api/universities/create`, univ)
         dispatch({
             type: REGISTER_UNIV_SUCCESS,
             payload: data
@@ -86,7 +86,7 @@ export const updateUnivAction = (univ) => async (dispatch) => {
     dispatch({ type: UPDATE_UNIV_REQUEST })
 
     try {
-        const { data } = await axios.post(`http://localhost:9000/universe/upd/:univ_id`, univ)
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/universe/upd/:univ_id`, univ)
         dispatch({
             type: UPDATE_UNIV_SUCCESS,
             payload: data
@@ -109,7 +109,7 @@ export const deleteUnivAction = (univ) => async (dispatch) => {
     dispatch({ type: DELETE_UNIV_REQUEST })
 
     try {
-        const { data } = await axios.post(`http://localhost:9000/api/universe/del/:id`, univ)
+        const { data } = await axios.post(`https://scholarsfellowships-ae3r.onrender.com/api/universe/del/:id`, univ)
         dispatch({
             type: DELETE_UNIV_SUCCESS,
             payload: data
@@ -133,7 +133,7 @@ export const programLoadAction = (univ_id,program_id) => async (dispatch) => {
     dispatch({ type: PROGRAM_LOAD_REQUEST });
     try {
         // eslint-disable-next-line no-template-curly-in-string
-        const { data } = await axios.get(`http://localhost:9000/api/${univ_id}/${program_id}`);
+        const { data } = await axios.get(`https://scholarsfellowships-ae3r.onrender.com/api/${univ_id}/${program_id}`);
         dispatch({
             type: PROGRAM_LOAD_SUCCESS,
             payload: data
