@@ -41,9 +41,9 @@ app.use(cors());
 
 
 //routes middleware
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
-app.use('/api',univRoutes);
+app.use('/v1/api', authRoutes);
+app.use('/v1/api', userRoutes);
+app.use('/v1/api',univRoutes);
 
 __dirname = path.resolve()
 
